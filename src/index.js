@@ -2,17 +2,9 @@ import imgs from './images.js';
 import './reset.css';
 import './style.css';
 import './image-slider.css';
+import { ImageSlider } from './slider-builder.js';
 
-const imageSlider = document.querySelector('.image-slider');
-const imagesContainer = document.createElement('div');
-imagesContainer.classList.add('images-container');
-imgs.forEach((image, index) => {
-  const imageContainer = document.createElement('div');
-  const imageElement = document.createElement('img');
-  imageElement.src = image;
-  imageContainer.classList.add(`image${index}`);
-  imageContainer.classList.add('fade');
-  imageContainer.appendChild(imageElement);
-  imagesContainer.appendChild(imageContainer);
-});
-imageSlider.appendChild(imagesContainer);
+const imageSlider = ImageSlider(imgs);
+const contentDiv = document.querySelector('#content');
+contentDiv.appendChild(imageSlider.element);
+imageSlider.addEventListenersToButtons();
